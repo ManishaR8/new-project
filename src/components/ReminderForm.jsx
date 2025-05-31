@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useAppContext } from '@/context/AppContext';
+import { useAppContext, REMINDER_CATEGORIES } from '@/context/AppContext';
 import { ArrowLeft, ChevronDown, Calendar, Clock } from 'lucide-react';
 
 const ReminderForm = ({ editId, onClose }) => {
@@ -60,9 +60,6 @@ const ReminderForm = ({ editId, onClose }) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // console.log("line 63", formData);
-
-
     if (editId) {
       const reminderToUpdate = state.reminders.find(r => r.id === editId);
       if (reminderToUpdate) {
@@ -76,7 +73,7 @@ const ReminderForm = ({ editId, onClose }) => {
       setSelectedDate(formData.startDate);
     }
 
-    onClose();
+    onClose(true); 
   };
 
   const handleDelete = () => {
@@ -138,9 +135,9 @@ const ReminderForm = ({ editId, onClose }) => {
                 value={formData.category}
                 onChange={e => setFormData({ ...formData, category: e.target.value })}
               >
-                <option value="General">General</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Health">Health</option>
+                {REMINDER_CATEGORIES.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
               </select>
               <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
             </div>
