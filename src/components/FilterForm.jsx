@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { useAppContext } from '@/context/AppContext';
+import { useAppContext, REMINDER_CATEGORIES } from '@/context/AppContext';
 import { X } from 'lucide-react'; 
 
 const FilterForm = ({ onClose }) => {
@@ -13,8 +13,6 @@ const FilterForm = ({ onClose }) => {
   const handleCategoryChange = (e) => {
     setFilter('category', e.target.value === '' ? null : e.target.value);
   };
-
-  const categories = ["Feeding", "Walk", "Medication", "Playtime", "Grooming", "Training"];
 
   return (
     <div className="fixed inset-0 bg-[#000000db] opacity-95 flex items-center justify-center z-50 p-4">
@@ -56,7 +54,7 @@ const FilterForm = ({ onClose }) => {
             onChange={handleCategoryChange}
           >
             <option value="">All Categories</option>
-            {categories.map(cat => (
+            {REMINDER_CATEGORIES.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
             ))}
           </select>
