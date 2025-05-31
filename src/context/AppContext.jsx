@@ -2,6 +2,12 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { getCurrentDate, getTimeSlot } from '@/utils/dateUtils';
 
+export const REMINDER_CATEGORIES = [
+  "General",
+  "Lifestyle",
+  "Health"
+];
+
 const initialPets = [
   { id: '1', name: 'Browny' },
   { id: '2', name: 'Max' },
