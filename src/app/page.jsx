@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 export default function Home() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingReminderId, setEditingReminderId] = useState();
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleAddReminder = () => {
     setEditingReminderId(undefined);
@@ -20,9 +21,17 @@ export default function Home() {
     setShowAddForm(true);
   };
 
-  const handleCloseForm = () => {
+  const handleShowSuccess = (msg) => {
+    setSuccessMessage(msg);
+    setTimeout(() => setSuccessMessage(''), 2500);
+  };
+
+  const handleCloseForm = (wasSaved = false) => {
     setShowAddForm(false);
     setEditingReminderId(undefined);
+    if (wasSaved) {
+      handleShowSuccess('Your reminder is added!');
+    }
   };
 
   return (
@@ -37,6 +46,14 @@ export default function Home() {
           editId={editingReminderId}
           onClose={handleCloseForm}
         />
+      )}
+
+      {successMessage && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none -bottom-72">
+          <div className=" bg-white border border-gray-100 text-black px-3 py-2 rounded-xl shadow-lg text-sm font-semibold animate-fade-in">
+            {successMessage}
+          </div>
+        </div>
       )}
     </div>
   );
