@@ -107,7 +107,7 @@ const RemindersList = ({ onEdit, onAddReminder }) => {
     <div className="relative">
       <div className="mb-2 flex justify-between items-center">
         <h2 className="text-sm text-opacity-75 font-semibold text-[#171717]">{getCurrentTimeOfDay()} </h2>
-        <span>
+        <span className="flex items-center gap-2">
           <button
             onClick={() => setShowFilterForm(true)}
             className="text-black cursor-pointer"
@@ -116,6 +116,19 @@ const RemindersList = ({ onEdit, onAddReminder }) => {
           >
             <SlidersHorizontal className="w-5 h-5" />
           </button>
+
+          {(state.filters.pet || state.filters.category) && (
+            <button
+              onClick={() => {
+                setFilter('pet', null);
+                setFilter('category', null);
+              }}
+              className="ml-1 text-xs bg-gray-100 text-black px-2 py-1 rounded"
+              title="Clear Filters"
+            >
+              Clear Filters
+            </button>
+          )}
         </span>
       </div>
 
@@ -231,7 +244,7 @@ const RemindersList = ({ onEdit, onAddReminder }) => {
             </div>
           )}
           {pendingGoals.length === 0 && (activeReminders.length > 0 || completedGoals.length > 0) && (
-            <p className="text-gray-500 mb-4">No pending goals for selected filters.</p>
+            <p className="text-gray-500 mb-4">No pending goals</p>
           )}
 
           {completedGoals.length > 0 && (
