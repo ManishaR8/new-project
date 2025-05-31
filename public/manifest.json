@@ -1,0 +1,28 @@
+{
+  "name": "Pet Reminders App",
+  "short_name": "PetReminders",
+  "description": "A Web App for managing pet reminders and goals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#019D6B",
+  "orientation": "any",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icons/feet.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+],
+"screenshots": [
+    {
+      "src": "/images/home.png",
+      "sizes": "100x100",
+      "type": "image/png",
+      "label": "Home screen"
+    }
+] 
+ 
+
+}
